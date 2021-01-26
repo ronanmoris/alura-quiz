@@ -1,5 +1,8 @@
-import { createGlobalStyle, ThemeProvider } from "styled-components";
-import db from "../db.json";
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
+
+import db from '../db.json';
+
+import IndexPage from '../src/components/IndexPage';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -24,11 +27,12 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const theme = db.theme;
+const { theme } = db;
 
 export default function App({ Component, pageProps }) {
   return (
     <>
+      <IndexPage />
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <Component {...pageProps} />

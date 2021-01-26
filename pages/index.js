@@ -1,10 +1,13 @@
-import styled from "styled-components";
-import db from "../db.json";
-import Widget from "../src/components/Widget";
-import QuizLogo from "../src/components/QuizLogo";
-import QuizBackground from "../src/components/QuizBackground";
-import Footer from "../src/components/Footer";
-import GitHubCorner from "../src/components/GitHubCorner";
+import React from 'react';
+import styled from 'styled-components';
+import { useRouter } from 'next/router'
+
+import db from '../db.json';
+import Widget from '../src/components/Widget';
+import QuizLogo from '../src/components/QuizLogo';
+import QuizBackground from '../src/components/QuizBackground';
+import Footer from '../src/components/Footer';
+import GitHubCorner from '../src/components/GitHubCorner';
 
 // const BackgroundImage = styled.div`
 //   background-image: url(${db.bg});
@@ -24,7 +27,16 @@ export const QuizContainer = styled.div`
   }
 `;
 
+
 export default function Home() {
+  const router = useRouter()
+  const [name, setName] = React.useState('')
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+
+    router.push(`/quiz?name=${name}`)
+  }
   return (
     <QuizBackground backgroundImage={db.bg}>
       <QuizContainer>
@@ -40,9 +52,11 @@ export default function Home() {
 
         <Widget>
           <Widget.Content>
-            <h1>Quizes da Galera</h1>
+          <form onSubmit={handleSubmit}>
+            <input onChange={(e) => setName(e.target.value)} value={name} type="text" placeholder="Diz aí teu nome" />
+            <button disabled={!name} type="submit">Jogar {name}</button>
+          </form>
 
-            <p>lorem ipsum dolor sit amet...</p>
           </Widget.Content>
         </Widget>
         <Footer />
