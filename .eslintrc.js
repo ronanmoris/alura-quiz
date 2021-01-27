@@ -19,11 +19,6 @@ module.exports = {
   ],
   rules: {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
-    "react/jsx-props-no-spreading": [<enabled>, {
-      "html": "ignore" | "enforce",
-    "custom": "ignore" | "enforce",
-    "explicitSpread": "ignore" | "enforce",
-    "exceptions": [<string>]
-      }],
-      },
-      };
+    quotes: [2, 'single', { avoidEscape: true }],
+  },
+};
